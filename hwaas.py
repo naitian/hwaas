@@ -27,17 +27,21 @@ class HelloWorld:
             phrase += "!"
         if 'comma' in params and params['comma'] == 'true':
             phrase = phrase.replace(" ", ", ")
+        if 'prepend' in params:
+            phrase = params['prepend'] + phrase
+        if 'append' in params:
+            phrase += params['append']
+        if 'l33t' in params and params['l33t'] == 'true':
+            phrase = phrase.translate(str.maketrans('elao', '3740'))
         if 'case' in params:
             if params['case'] == 'title':
                 phrase = phrase.title()
             elif params['case'] == 'lower':
                 phrase = phrase.lower()
+            elif params['case'] == 'upper':
+                phrase = phrase.upper()
             elif params['case'] == 'random':
                 phrase = ''.join([random.choice([c.upper(), c]) for c in phrase])
-        if 'prepend' in params:
-            phrase = params['prepend'] + phrase
-        if 'append' in params:
-            phrase += params['append']
         if 'classic' in params and params['classic'] == 'true':
             phrase = "Hello, World!"
         return phrase

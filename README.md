@@ -24,5 +24,7 @@ hEllO wORlD
 /?classic={bool}
 ‘Hello, World!’
 
+/?l33t={bool}
+
 text
 json
