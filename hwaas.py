@@ -29,7 +29,10 @@ class HelloWorld:
         '''
         phrase = "hello world"
         if 'translate' in params:
-            translator = Translator(to_lang=params['translate'][0])
+            if type(params['translate']) is str:
+				translator = Translator(to_lang=params['translate'])
+			else:
+				translator = Translator(to_lang=params['translate'][0])
             phrase = translator.translate(phrase).lower()
         if 'comma' in params and params['comma'] == 'true':
             phrase = phrase.replace(" ", ", ")
