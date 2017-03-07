@@ -32,6 +32,10 @@ class HelloWorld:
                 phrase = phrase.title()
             elif params['case'] == 'lower':
                 phrase = phrase.lower()
+        if 'prepend' in params:
+            phrase = params['prepend'] + phrase
+        if 'append' in params:
+            phrase += params['append']
         if 'classic' in params and params['classic'] == 'true':
             phrase = "Hello, World!"
         return phrase
