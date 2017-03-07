@@ -21,6 +21,8 @@ class HelloWorld:
         * case:title -> Hello World
         * case:lower -> hello world
         * classic:true -> Hello, World!
+        * prepend:** -> **hello world
+        * append:** -> hello world**
         '''
         phrase = "hello world"
         if 'excited' in params and params['excited'] == 'true':
@@ -38,6 +40,8 @@ class HelloWorld:
             phrase += params['append']
         if 'classic' in params and params['classic'] == 'true':
             phrase = "Hello, World!"
+        if 'multiplier' in params:
+            phrase = phrase * int(params['multiplier'])
         return phrase
 
 
