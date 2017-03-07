@@ -1,14 +1,20 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import falcon
 import random
 import json
 from translate import Translator
 
+
 class HelloWorld:
+
     def on_get(self, req, resp):
         '''
         * Handles GET request, calls get_hello with params to
         * get appropriate hello world
         '''
+
         params = req.params  # Get parameters
         hello = self.get_hello(params)  # Get appropriate hello
         resp.body = json.dumps(hello)  # Dump into body
@@ -27,21 +33,22 @@ class HelloWorld:
         * l33t:true -> h3770 w0r7d
         * translate:fr -> bonjour le monde
         '''
-        phrase = "hello world"
+
+        phrase = 'hello world'
         if 'translate' in params:
             if type(params['translate']) is str:
-				translator = Translator(to_lang=params['translate'])
-			else:
-				translator = Translator(to_lang=params['translate'][0])
+                translator = Translator(to_lang=params['translate'])
+            else:
+                translator = Translator(to_lang=params['translate'][0])
             phrase = translator.translate(phrase).lower()
         if 'comma' in params and params['comma'] == 'true':
-            phrase = phrase.replace(" ", ", ")
+            phrase = phrase.replace(' ', ', ')
         if 'prepend' in params:
             phrase = params['prepend'] + phrase
         if 'append' in params:
             phrase += params['append']
         if 'excited' in params and params['excited'] == 'true':
-            phrase += "!"
+            phrase += '!'
         if 'l33t' in params and params['l33t'] == 'true':
             phrase = phrase.translate(str.maketrans('elao', '3740'))
         if 'case' in params:
@@ -52,13 +59,17 @@ class HelloWorld:
             elif params['case'] == 'upper':
                 phrase = phrase.upper()
             elif params['case'] == 'random':
-                phrase = ''.join([random.choice([c.upper(), c]) for c in phrase])
+                phrase = ''.join([random.choice([c.upper(), c])
+                                 for c in phrase])
         if 'multiplier' in params:
-            phrase = (phrase + "\n") * int(params['multiplier'])
+            phrase = (phrase + '\n') * int(params['multiplier'])
         if 'classic' in params and params['classic'] == 'true':
-            phrase = "Hello, World!"
+            phrase = 'Hello, World!'
         return phrase
 
 
 api = falcon.API()
-api.add_route("/", HelloWorld())
+api.add_route('/', HelloWorld())
+
+
+			
