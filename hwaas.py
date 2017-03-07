@@ -34,6 +34,10 @@ class HelloWorld:
                 phrase = phrase.lower()
             elif params['case'] == 'random':
                 phrase = ''.join([random.choice([c.upper(), c]) for c in phrase])
+        if 'prepend' in params:
+            phrase = params['prepend'] + phrase
+        if 'append' in params:
+            phrase += params['append']
         if 'classic' in params and params['classic'] == 'true':
             phrase = "Hello, World!"
         return phrase
