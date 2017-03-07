@@ -1,7 +1,7 @@
 import falcon
 import random
 import json
-
+from translate import Translator
 
 class HelloWorld:
     def on_get(self, req, resp):
@@ -23,6 +23,9 @@ class HelloWorld:
         * classic:true -> Hello, World!
         * prepend:** -> **hello world
         * append:** -> hello world**
+        * multiplier:2 -> hello world hello world
+        * l33t:true -> h3770 w0r7d
+        * translate:fr -> bonjour le monde
         '''
         phrase = "hello world"
         if 'comma' in params and params['comma'] == 'true':
@@ -46,6 +49,9 @@ class HelloWorld:
                 phrase = ''.join([random.choice([c.upper(), c]) for c in phrase])
         if 'classic' in params and params['classic'] == 'true':
             phrase = "Hello, World!"
+        if 'translate' in params:
+            translator = Translate(to_lang=params['translate'])
+            phrase = translator.translate(phrase)
         if 'multiplier' in params:
             phrase = phrase * int(params['multiplier'])
         return phrase
