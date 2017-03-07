@@ -50,10 +50,10 @@ class HelloWorld:
         if 'classic' in params and params['classic'] == 'true':
             phrase = "Hello, World!"
         if 'translate' in params:
-            translator = Translate(to_lang=params['translate'])
+            translator = Translator(to_lang=params['translate'])
             phrase = translator.translate(phrase)
         if 'multiplier' in params:
-            phrase = phrase * int(params['multiplier'])
+            phrase = (phrase + "\n") * int(params['multiplier'])
         return phrase
 
 
