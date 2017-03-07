@@ -28,7 +28,7 @@ class HelloWorld:
         * translate:fr -> bonjour le monde
         '''
         phrase = "hello world"
-        if 'translate' in params:
+        if params['translate'] in params:
             if type(params['translate']) is str:
 				translator = Translator(to_lang=params['translate'])
 			else:
