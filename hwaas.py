@@ -25,14 +25,14 @@ class HelloWorld:
         * append:** -> hello world**
         '''
         phrase = "hello world"
-        if 'excited' in params and params['excited'] == 'true':
-            phrase += "!"
         if 'comma' in params and params['comma'] == 'true':
             phrase = phrase.replace(" ", ", ")
         if 'prepend' in params:
             phrase = params['prepend'] + phrase
         if 'append' in params:
             phrase += params['append']
+        if 'excited' in params and params['excited'] == 'true':
+            phrase += "!"
         if 'l33t' in params and params['l33t'] == 'true':
             phrase = phrase.translate(str.maketrans('elao', '3740'))
         if 'case' in params:
