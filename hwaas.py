@@ -1,4 +1,5 @@
 import falcon
+import random
 import json
 
 
@@ -10,8 +11,7 @@ class HelloWorld:
         '''
         params = req.params  # Get parameters
         hello = self.get_hello(params)  # Get appropriate hello
-        quote = {'quote': hello}  # json of quote:hello
-        resp.body = json.dumps(quote)  # Dump into body
+        resp.body = json.dumps(hello)  # Dump into body
 
     def get_hello(self, params):
         '''
@@ -34,6 +34,8 @@ class HelloWorld:
                 phrase = phrase.title()
             elif params['case'] == 'lower':
                 phrase = phrase.lower()
+            elif params['case'] == 'random':
+                phrase = ''.join([random.choice([c.upper(), c]) for c in phrase])
         if 'prepend' in params:
             phrase = params['prepend'] + phrase
         if 'append' in params:
